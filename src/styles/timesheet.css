@@ -1,0 +1,189 @@
+/* =========================
+   WEEK NAVIGATION
+========================= */
+
+.week-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.week-nav-btn {
+  display: flex;
+  align-items: center;
+
+  padding: 7px 10px;
+
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+
+  color: var(--text-muted);
+
+  transition: all 0.15s;
+}
+
+.week-nav-btn:hover {
+  border-color: var(--secondary);
+  color: var(--secondary);
+}
+
+.week-label {
+  flex: 1;
+  text-align: center;
+
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* =========================
+   DAY TABS
+========================= */
+
+.day-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+
+  margin-bottom: 20px;
+}
+
+.day-tab {
+  padding: 7px 14px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  background: var(--bg-white);
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-sm);
+
+  color: var(--text-muted);
+  cursor: pointer;
+
+  transition: all 0.15s;
+}
+
+.day-tab:hover {
+  border-color: var(--secondary);
+  color: var(--secondary);
+}
+
+.day-tab.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.day-tab.has-data {
+  border-color: var(--secondary);
+  color: var(--secondary);
+}
+
+.day-tab.active.has-data {
+  background: var(--secondary);
+  border-color: var(--secondary);
+  color: #fff;
+}
+
+/* =========================
+   ENTRY CARD
+========================= */
+
+.entry-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding: 16px 20px;
+  margin-bottom: 10px;
+
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+}
+
+.entry-project {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.entry-task {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.entry-hours {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--secondary);
+  white-space: nowrap;
+}
+
+.entry-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* =========================
+   TIMESHEET STATUS BAR
+========================= */
+
+.ts-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 14px 20px;
+  margin-bottom: 20px;
+
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+}
+
+.ts-total-hours {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.ts-total-label {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* =========================
+   ADD ENTRY FORM
+========================= */
+
+.add-entry-form {
+  padding: 20px;
+  margin-top: 12px;
+
+  background: var(--bg-white);
+  border: 1.5px dashed var(--border);
+  border-radius: var(--radius-md);
+}
+
+.add-entry-form-title {
+  margin-bottom: 16px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}

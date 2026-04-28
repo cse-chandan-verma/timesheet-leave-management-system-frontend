@@ -1,0 +1,77 @@
+/* =========================
+   LEAVE TYPE CARDS
+========================= */
+
+.leave-type-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.leave-type-card {
+  padding: 16px;
+  text-align: center;
+  cursor: pointer;
+
+  background: var(--bg-white);
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-md);
+
+  transition: all 0.15s;
+}
+
+.leave-type-card:hover {
+  border-color: var(--secondary);
+}
+
+.leave-type-card.selected {
+  border-color: var(--secondary);
+  background: var(--info-bg);
+}
+
+/* =========================
+   LEAVE TYPE CONTENT
+========================= */
+
+.leave-type-code {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--secondary);
+  margin-bottom: 4px;
+}
+
+.leave-type-name {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.leave-type-days {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 6px 0 2px;
+}
+
+.leave-type-label {
+  font-size: 10px;
+  color: var(--text-light);
+}
+
+/* =========================
+   APPLY FORM
+========================= */
+
+.apply-form-card {
+  padding: 24px;
+
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+}
+
+.date-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}

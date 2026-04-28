@@ -1,0 +1,115 @@
+/* =========================
+   DASHBOARD WELCOME
+========================= */
+
+.dashboard-welcome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 24px;
+  padding: 24px 28px;
+
+  background: var(--primary);
+  color: #fff;
+  border-radius: var(--radius-lg);
+}
+
+.dashboard-welcome-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.dashboard-welcome-sub {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.dashboard-welcome-icon {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+/* =========================
+   LEAVE BALANCE
+========================= */
+
+.leave-balance-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
+}
+
+.leave-balance-card {
+  padding: 16px;
+  text-align: center;
+
+  background: var(--bg-main);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+}
+
+.leave-balance-type {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 8px;
+}
+
+.leave-balance-remaining {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--secondary);
+  line-height: 1;
+}
+
+.leave-balance-total {
+  font-size: 11px;
+  color: var(--text-light);
+  margin-top: 4px;
+}
+
+/* =========================
+   RECENT ITEMS
+========================= */
+
+.recent-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.recent-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 12px 0;
+  font-size: 13px;
+
+  border-bottom: 1px solid var(--border-light);
+}
+
+.recent-item:last-child {
+  border-bottom: none;
+}
+
+.recent-label {
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.recent-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+
+.two-col-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
