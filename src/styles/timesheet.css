@@ -97,13 +97,12 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-
   padding: 16px 20px;
   margin-bottom: 10px;
-
   background: var(--bg-white);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
+  flex-wrap: wrap;
 }
 
 .entry-project {
@@ -138,10 +137,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-
+  flex-wrap: wrap;
+  gap: 10px;
   padding: 14px 20px;
   margin-bottom: 20px;
-
   background: var(--bg-white);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
@@ -186,4 +185,25 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
+}
+
+@media (max-width: 480px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  .week-nav {
+    flex-wrap: wrap;
+  }
+  .week-label {
+    width: 100%;
+    order: -1;
+    text-align: center;
+  }
+  .day-tabs {
+    gap: 4px;
+  }
+  .day-tab {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
 }

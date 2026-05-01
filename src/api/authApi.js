@@ -12,6 +12,10 @@ export const forgotPassword = (data) => {
   return axiosInstance.post("/auth/forgot-password", data);
 };
 
+export const resetPassword = (data) => {
+  return axiosInstance.post("/auth/reset-password", data);
+};
+
 export const getProfile = () => {
   return axiosInstance.get("/auth/profile");
 };

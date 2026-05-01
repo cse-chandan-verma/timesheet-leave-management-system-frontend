@@ -113,3 +113,25 @@
   grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
+
+@media (max-width: 768px) {
+  .two-col-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Responsive dashboard welcome */
+@media (max-width: 480px) {
+  .dashboard-welcome {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 20px;
+  }
+  .dashboard-welcome-icon {
+    display: none;
+  }
+  .leave-balance-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

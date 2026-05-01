@@ -120,7 +120,27 @@ textarea {
   background: var(--bg-main);
 }
 
+/* Responsive Layout */
+@media (max-width: 1024px) {
+  .main-content {
+    padding: 20px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+    padding: 16px;
+    padding-top: 72px;
+  }
+}
+
 .page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
   margin-bottom: 24px;
 }
 
@@ -149,6 +169,8 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
   margin-bottom: 20px;
   padding-bottom: 16px;
   border-bottom: 1px solid var(--border-light);
@@ -388,9 +410,15 @@ textarea {
 /* Stats */
 .stat-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 16px;
   margin-bottom: 24px;
+}
+
+@media (max-width: 480px) {
+  .stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .stat-card {
@@ -437,4 +465,65 @@ textarea {
 .stat-icon {
   color: var(--secondary);
   margin-bottom: 10px;
+}
+
+/* =========================
+   GLOBAL RESPONSIVE
+========================= */
+
+/* Tablet (≤1024px) */
+@media (max-width: 1024px) {
+  .page-title {
+    font-size: 19px;
+  }
+  .stat-value {
+    font-size: 24px;
+  }
+}
+
+/* Mobile (≤768px) */
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 17px;
+  }
+  .card {
+    padding: 16px;
+  }
+  .table th,
+  .table td {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+  .btn {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+  .btn-sm {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+  .stat-card {
+    padding: 16px;
+  }
+  .stat-value {
+    font-size: 22px;
+  }
+}
+
+/* Small mobile (≤480px) */
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 16px;
+  }
+  .card {
+    padding: 14px;
+  }
+  .table th,
+  .table td {
+    padding: 8px 10px;
+    white-space: nowrap;
+  }
+  .modal-overlay {
+    padding: 8px;
+  }
 }

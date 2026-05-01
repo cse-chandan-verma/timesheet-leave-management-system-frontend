@@ -121,3 +121,40 @@
 .input-eye:hover {
   color: var(--text-muted);
 }
+
+
+.input-icon-right {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  display: flex;
+  align-items: center;
+
+  color: var(--text-light);
+  cursor: pointer;
+}
+
+.input-icon-right:hover {
+  color: var(--text-muted);
+}
+
+.input-with-icon-right {
+  padding-right: 38px !important;
+}
+
+/* =========================
+   RESPONSIVE AUTH
+========================= */
+
+@media (max-width: 480px) {
+  .auth-page {
+    padding: 16px;
+    align-items: flex-start;
+    padding-top: 32px;
+  }
+  .auth-card {
+    padding: 28px 20px;
+  }
+}

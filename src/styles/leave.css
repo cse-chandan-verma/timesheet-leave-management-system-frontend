@@ -75,3 +75,12 @@
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
+
+@media (max-width: 480px) {
+  .date-row {
+    grid-template-columns: 1fr;
+  }
+  .leave-type-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
