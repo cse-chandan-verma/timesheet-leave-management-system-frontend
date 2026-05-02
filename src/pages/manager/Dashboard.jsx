@@ -7,7 +7,7 @@ import StatusBadge from "../../components/StatusBadge";
 import { useAuth } from "../../context/AuthContext";
 import { getSubmittedTimesheets } from "../../api/timesheetApi";
 import { getPendingLeaves } from "../../api/leaveApi";
-import { getAllUsers } from "../../api/authApi";
+import { getMyTeam } from "../../api/authApi";
 import "../../styles/dashboard.css";
 import "../../styles/admin.css";
 
@@ -22,14 +22,14 @@ function ManagerDashboard() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const [tsRes, lvRes, usersRes] = await Promise.all([
+        const [tsRes, lvRes, teamRes] = await Promise.all([
           getSubmittedTimesheets(),
           getPendingLeaves(),
-          getAllUsers(),
+          getMyTeam(),
         ]);
         setTimesheets(tsRes.data);
         setLeaves(lvRes.data);
-        setUsers(usersRes.data);
+        setUsers(teamRes.data);
       } catch (err) {
         console.error(err);
       } finally {
@@ -80,9 +80,9 @@ function ManagerDashboard() {
         </div>
         <div className="stat-card stat-card-clickable" onClick={() => navigate("/manager/team")}>
           <div className="stat-icon"><Users size={20} /></div>
-          <div className="stat-label">Total Employees</div>
+          <div className="stat-label">My Team</div>
           <div className="stat-value">{users.length}</div>
-          <div className="stat-sub">registered users</div>
+          <div className="stat-sub">assigned employees</div>
         </div>
         <div className="stat-card stat-card-clickable" onClick={() => navigate("/manager/pending-timesheets")}>
           <div className="stat-icon"><CheckCircle size={20} /></div>

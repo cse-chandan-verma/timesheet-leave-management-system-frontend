@@ -7,7 +7,6 @@ import {
   User,
   Users,
   Bell,
-  Settings,
   LogOut,
   ClipboardList,
   CalendarDays,
@@ -43,7 +42,6 @@ const adminLinks = [
   { to: "/admin/users", icon: <Users size={18} />, label: "Users" },
   { to: "/admin/holidays", icon: <CalendarDays size={18} />, label: "Holidays" },
   { to: "/admin/notifications", icon: <Bell size={18} />, label: "Notifications" },
-  { to: "/admin/audit", icon: <Settings size={18} />, label: "Audit Log" },
   { to: "/employee/profile", icon: <User size={18} />, label: "Profile" },
 ];
 

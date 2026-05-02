@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Users, Search } from "lucide-react";
 import Layout from "../../components/Layout";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import { getAllUsers } from "../../api/authApi";
+import { getMyTeam } from "../../api/authApi";
 import "../../styles/admin.css";
 
 function TeamOverview() {
@@ -12,7 +12,7 @@ function TeamOverview() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getAllUsers()
+    getMyTeam()
       .then((res) => {
         setUsers(res.data);
         setFiltered(res.data);
@@ -58,8 +58,8 @@ function TeamOverview() {
   return (
     <Layout>
       <div className="page-header">
-        <h1 className="page-title">Team Overview</h1>
-        <p className="page-subtitle">All registered users in the system</p>
+        <h1 className="page-title">My Team</h1>
+        <p className="page-subtitle">Employees assigned to you</p>
       </div>
 
       <div className="card">
@@ -143,11 +143,7 @@ function TeamOverview() {
                     <td style={{ color: "var(--text-muted)" }}>{u.email}</td>
                     <td>{roleBadge(u.role)}</td>
                     <td>
-                      <span
-                        className={`badge ${u.isActive ? "badge-approved" : "badge-rejected"}`}
-                      >
-                        {u.isActive ? "Active" : "Inactive"}
-                      </span>
+                      <span className="badge badge-approved">Active</span>
                     </td>
                   </tr>
                 ))}

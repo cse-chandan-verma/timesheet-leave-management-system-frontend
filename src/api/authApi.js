@@ -35,3 +35,15 @@ export const getUserByEmail = (email) => {
 export const promoteUser = (data) => {
   return axiosInstance.put("/auth/admin/promote", data);
 };
+
+export const assignManager = (data) => {
+  return axiosInstance.put("/auth/admin/assign-manager", data);
+};
+
+export const getAllManagers = () => {
+  return axiosInstance.get("/auth/admin/managers");
+};
+
+export const getMyTeam = () => {
+  return axiosInstance.get("/auth/manager/my-team");
+};

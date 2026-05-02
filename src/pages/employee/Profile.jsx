@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { User, Mail, Hash, Shield, Save, Lock } from "lucide-react";
+import { User, Mail, Hash, Shield, Save, Lock, Briefcase } from "lucide-react";
 import Layout from "../../components/Layout";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import Toast from "../../components/Toast";
@@ -173,23 +173,25 @@ function Profile() {
             <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
               <Shield size={15} style={{ color: "var(--text-muted)" }} />
               <div>
-                <p
-                  style={{
-                    fontSize: "11px",
-                    color: "var(--text-muted)",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.05em",
-                  }}
-                >
+                <p style={{ fontSize: "11px", color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.05em" }}>
                   Status
                 </p>
-                <span
-                  className={`badge ${profile?.isActive ?? profile?.active ? "badge-approved" : "badge-rejected"}`}
-                >
-                  {profile?.isActive ?? profile?.active ? "Active" : "Inactive"}
-                </span>
+                <span className="badge badge-approved">Active</span>
               </div>
             </div>
+            {profile?.managerId && (
+              <div style={{ display: "flex", gap: "10px", alignItems: "flex-start", paddingTop: "14px", borderTop: "1px solid var(--border-light)" }}>
+                <Briefcase size={15} style={{ color: "var(--text-muted)", marginTop: "2px" }} />
+                <div>
+                  <p style={{ fontSize: "11px", color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                    My Manager
+                  </p>
+                  <p style={{ fontWeight: 600, fontSize: "13px" }}>{profile.managerName}</p>
+                  <p style={{ fontSize: "12px", color: "var(--text-muted)" }}>{profile.managerEmail}</p>
+                  <p style={{ fontSize: "11px", color: "var(--text-light)" }}>ID: {profile.managerId}</p>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 

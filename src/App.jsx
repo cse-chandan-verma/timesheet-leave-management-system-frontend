@@ -41,7 +41,6 @@ import AdminDashboard from "./pages/admin/Dashboard";
 import AdminUsers from "./pages/admin/UserManagement";
 import AdminHolidays from "./pages/admin/HolidayManagement";
 import AdminNotifications from "./pages/admin/Notifications";
-import AdminAudit from "./pages/admin/AuditLog";
 
 /* =========================
    APP
@@ -213,15 +212,6 @@ function App() {
             element={
               <ProtectedRoute allowedRoles={["ADMIN"]}>
                 <AdminNotifications />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/admin/audit"
-            element={
-              <ProtectedRoute allowedRoles={["ADMIN"]}>
-                <AdminAudit />
               </ProtectedRoute>
             }
           />
