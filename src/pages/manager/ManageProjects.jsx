@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Briefcase, Plus, Search } from "lucide-react";
+import { Briefcase, Plus, Search, Trash2 } from "lucide-react";
 import Layout from "../../components/Layout";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import Toast from "../../components/Toast";
 import Modal from "../../components/Modal";
-import { getProjects, createProject } from "../../api/timesheetApi";
+import { getProjects, createProject, deleteProject } from "../../api/timesheetApi";
 import "../../styles/admin.css";
 
 function ManageProjects() {
@@ -13,11 +13,9 @@ function ManageProjects() {
   const [toast, setToast] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(null);
   const [submitting, setSubmitting] = useState(false);
-  const [form, setForm] = useState({
-    projectName: "",
-    projectCode: "",
-  });
+  const [form, setForm] = useState({ projectName: "", projectCode: "" });
 
   useEffect(() => {
     fetchProjects();
@@ -41,7 +39,6 @@ function ManageProjects() {
       setToast({ msg: "Both project name and code are required.", type: "error" });
       return;
     }
-
     setSubmitting(true);
     try {
       await createProject(form);
@@ -59,6 +56,23 @@ function ManageProjects() {
     }
   }
 
+  async function handleDelete() {
+    setSubmitting(true);
+    try {
+      const res = await deleteProject(deleteModal.id);
+      setToast({ msg: res.data || `Project '${deleteModal.projectName}' deleted.`, type: "success" });
+      setDeleteModal(null);
+      fetchProjects();
+    } catch (err) {
+      setToast({
+        msg: err.response?.data?.message || "Failed to delete project.",
+        type: "error",
+      });
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
   const filteredProjects = projects.filter(
     (p) =>
       p.projectName.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -68,36 +82,37 @@ function ManageProjects() {
   return (
     <Layout>
       {toast && (
-        <Toast
-          message={toast.msg}
-          type={toast.type}
-          onClose={() => setToast(null)}
-        />
+        <Toast message={toast.msg} type={toast.type} onClose={() => setToast(null)} />
       )}
 
       <div className="page-header">
         <div>
           <h1 className="page-title">Project Management</h1>
-          <p className="page-subtitle">View and register new projects in the system</p>
+          <p className="page-subtitle">View, create and delete projects</p>
         </div>
-        <button
-          className="btn btn-primary"
-          onClick={() => setIsModalOpen(true)}
-        >
+        <button className="btn btn-primary" onClick={() => setIsModalOpen(true)}>
           <Plus size={16} /> Add Project
         </button>
       </div>
 
       <div className="card">
-        <div className="search-bar" style={{ marginBottom: "20px" }}>
-          <Search size={18} className="search-icon" />
-          <input
-            type="text"
-            className="search-input"
-            placeholder="Search projects by name or code..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+        <div className="filter-bar">
+          <div style={{ position: "relative", flex: 1, maxWidth: "320px" }}>
+            <span style={{ position: "absolute", left: "10px", top: "50%", transform: "translateY(-50%)", color: "var(--text-light)", display: "flex" }}>
+              <Search size={15} />
+            </span>
+            <input
+              type="text"
+              className="form-input"
+              style={{ paddingLeft: "34px" }}
+              placeholder="Search by name or code..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+          <span style={{ fontSize: "12px", color: "var(--text-muted)", marginLeft: "auto" }}>
+            {filteredProjects.length} project{filteredProjects.length !== 1 ? "s" : ""}
+          </span>
         </div>
 
         {loading ? (
@@ -115,19 +130,22 @@ function ManageProjects() {
                   <th>Project Name</th>
                   <th>Project Code</th>
                   <th>Status</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredProjects.map((p) => (
                   <tr key={p.id}>
+                    <td><span className="info-name">{p.projectName}</span></td>
+                    <td style={{ fontWeight: 500, fontFamily: "monospace" }}>{p.projectCode}</td>
+                    <td><span className="badge badge-approved">Active</span></td>
                     <td>
-                      <div className="info-row">
-                        <span className="info-name">{p.projectName}</span>
-                      </div>
-                    </td>
-                    <td style={{ fontWeight: 500 }}>{p.projectCode}</td>
-                    <td>
-                      <span className="status-badge approved">Active</span>
+                      <button
+                        className="btn btn-danger btn-sm"
+                        onClick={() => setDeleteModal(p)}
+                      >
+                        <Trash2 size={13} /> Delete
+                      </button>
                     </td>
                   </tr>
                 ))}
@@ -137,16 +155,14 @@ function ManageProjects() {
         )}
       </div>
 
+      {/* Add Project Modal */}
       {isModalOpen && (
         <Modal
           title="Add New Project"
           onClose={() => setIsModalOpen(false)}
           footer={
             <>
-              <button
-                className="btn btn-outline btn-sm"
-                onClick={() => setIsModalOpen(false)}
-              >
+              <button className="btn btn-outline btn-sm" onClick={() => setIsModalOpen(false)}>
                 Cancel
               </button>
               <button
@@ -159,7 +175,7 @@ function ManageProjects() {
             </>
           }
         >
-          <form className="admin-form" onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label className="form-label">Project Name</label>
               <input
@@ -181,6 +197,34 @@ function ManageProjects() {
               />
             </div>
           </form>
+        </Modal>
+      )}
+
+      {/* Delete Confirm Modal */}
+      {deleteModal && (
+        <Modal
+          title="Delete Project"
+          onClose={() => setDeleteModal(null)}
+          footer={
+            <>
+              <button className="btn btn-outline btn-sm" onClick={() => setDeleteModal(null)}>
+                Cancel
+              </button>
+              <button
+                className="btn btn-danger btn-sm"
+                onClick={handleDelete}
+                disabled={submitting}
+              >
+                {submitting ? "Deleting..." : "Delete"}
+              </button>
+            </>
+          }
+        >
+          <p style={{ fontSize: "14px", color: "var(--text-muted)" }}>
+            Are you sure you want to delete project{" "}
+            <strong style={{ color: "var(--text-main)" }}>{deleteModal.projectName}</strong>{" "}
+            ({deleteModal.projectCode})?
+          </p>
         </Modal>
       )}
     </Layout>

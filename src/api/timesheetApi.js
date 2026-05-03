@@ -47,3 +47,7 @@ export const rejectTimesheet = (id, data) => {
 export const createProject = (data) => {
   return axiosInstance.post("/timesheet/admin/projects", data);
 };
+
+export const deleteProject = (id) => {
+  return axiosInstance.delete(`/timesheet/admin/projects/${id}`);
+};
