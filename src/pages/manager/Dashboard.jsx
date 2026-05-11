@@ -57,7 +57,7 @@ function ManagerDashboard() {
     <Layout>
       <div className="dashboard-welcome">
         <div>
-          <p className="dashboard-welcome-title">Manager Dashboard 👔</p>
+          <p className="dashboard-welcome-title">Manager Dashboard</p>
           <p className="dashboard-welcome-sub">
             {today} · Logged in as {user?.fullName}
           </p>

@@ -66,7 +66,7 @@ function Dashboard() {
       <div className="dashboard-welcome">
         <div>
           <p className="dashboard-welcome-title">
-            Hello, {user?.fullName?.split(" ")[0]} 👋
+            Hello, {user?.fullName?.split(" ")[0]}
           </p>
           <p className="dashboard-welcome-sub">{today}</p>
         </div>

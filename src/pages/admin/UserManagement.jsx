@@ -207,8 +207,8 @@ function UserManagement() {
                             u.role === "MANAGER"
                               ? "Cannot assign a manager to another manager"
                               : u.role === "ADMIN"
-                              ? "Cannot assign a manager to admin"
-                              : ""
+                                ? "Cannot assign a manager to admin"
+                                : ""
                           }
                         >
                           Assign Manager
